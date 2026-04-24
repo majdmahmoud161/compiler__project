@@ -28,6 +28,7 @@ BREAK:'break';
 CONTINUE:'continue';
 RETURN:'return';
 RANGE:'range';
+DEF:'def';
 
 
 //build in function
