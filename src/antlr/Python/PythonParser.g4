@@ -2,16 +2,16 @@ parser grammar PythonParser;
 
 options { tokenVocab =PythonLexer;}
 
-programe : state+ EOF;
+programe : state* EOF;
 
 state :
-    vardecler
-    |array
-    |loop
-    |if
-    |exp
-    |function_decler
-    |call_function;
+    vardecler           #VarLable
+    |array              #ArrayLable
+    |loop               #LoopLable
+    |if                 #IfLable
+    |exp                #ExpLable
+    |function_decler    #FunctionDeclerLable
+    |call_function      #CallFunctionLable;
 
 vardecler : ID EQUALS (value|array);
 
@@ -20,8 +20,9 @@ value : INT|DOUBLE|STRING|TRUEBOOL|FALSEBOOL|ID;
 array : (ID)? OPENSQUER (value(COMMA value)*)* CLOSESQUER ;
 
 loop :
-    for
-    |while;
+    for                 #ForLable
+    |while              #WhileLable;
+
 
 for : FOR ID IN RANGE OPENPRAC (INT|ID) CLOSEPRAC COLONE  (state)? (BREAK|CONTINUE)?;
 
@@ -35,7 +36,7 @@ else: ELSE COLONE  (state)? ;
 
 function_decler: DEF ID OPENPRAC (ID(COMMA ID)*)* CLOSEPRAC COLONE (state)?;
 
-call_function : (ID|build_in_function) OPENPRAC (paramterlist)? CLOSEPRAC  ;
+call_function : (ID|build_in_function) OPENPRAC paramterlist CLOSEPRAC  ;
 
 build_in_function: PRINT|TYPE|LEN|INPUT ;
 
