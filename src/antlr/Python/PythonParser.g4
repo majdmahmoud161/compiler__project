@@ -11,7 +11,14 @@ state :
     |if                 #IfLable
     |exp                #ExpLable
     |function_decler    #FunctionDeclerLable
-    |call_function      #CallFunctionLable;
+    |call_function      #CallFunctionLable
+    |class_decl         #ClassDeclLabel
+    |object             #ObjectLabel
+    |encapsulation      #EncapsulationLabel
+    |constructor_decl   #ConstructorLabel
+    |decorator          #DecoratorLabel
+    |call_fromclass     #CallFromClassLabel
+    ;
 
 vardecler : ID EQUALS (value|array);
 
@@ -36,7 +43,7 @@ else: ELSE COLONE  (state)? ;
 
 function_decler: DEF ID OPENPRAC (ID(COMMA ID)*)* CLOSEPRAC COLONE (state)? return?;
 
-call_function : (ID|build_in_function) OPENPRAC paramterlist CLOSEPRAC  ;
+call_function : (ID|build_in_function) OPENPRAC paramterlist? CLOSEPRAC  ;
 
 build_in_function: PRINT|TYPE|LEN|INPUT ;
 
@@ -44,5 +51,28 @@ paramterlist: (value(COMMA value)*)* ;
 
 return : RETURN value ;
 exp: INT ;
+
+class_decl
+   :CLASS ID COLONE encapsulation* (state)* constructor_decl*
+   ;
+constructor_decl
+   : DEF ID OPENPRAC (ID (COMMA)? paramterlist)? CLOSEPRAC COLONE (ID DOT ID EQUALS value)* state*
+   ;
+object
+   : ID EQUALS ID OPENPRAC (paramterlist)? CLOSEPRAC
+   ;
+call_fromclass
+   :ID DOT call_function
+   ;
+
+decorator : AT ID ;
+
+inheritance
+   : CLASS ID OPENPRAC ID (COMMA ID)* CLOSEPRAC COLONE (SUPER DOT ID OPENPRAC paramterlist? CLOSEPRAC)? (state)*
+   ;
+encapsulation
+   : PRIVATE vardecler
+   | PROTECTED vardecler
+   ;
 
 

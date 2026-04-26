@@ -49,6 +49,14 @@ CLOSEKPRA:'}';
 OPENSQUER:'[';
 CLOSESQUER:']';
 
+//oop
+CLASS:'class';
+SUPER:'super';
+NONE:'None';
+AT:'@';
+PRIVATE:'__';
+PROTECTED:'_';
+
 
 INT:[0-9]+;
 DOUBLE:INT'.'INT;
