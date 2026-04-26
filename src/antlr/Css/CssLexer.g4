@@ -1,0 +1,81 @@
+lexer grammar CssLexer;
+
+OPENKPRA    : '{';
+CLOSEKPRA   : '}';
+DOT: '.';
+SEMICOLON      : ';';
+COLONE          : ':';
+OPENPRAC   : '(';
+CLOSEPRAC  : ')';
+COMMA          : ',';
+
+// تعريف الخانة الواحدة كجزء (fragment) لا يتم قراءته كتوكن لوحده
+fragment HEX_DIGIT : [a-fA-F0-9];
+
+// تعريف لون الهيكسا ليكون إما 3 خانات أو 6 خانات باستخدام الـ fragment
+HEXCOLOR : '#' HEX_DIGIT HEX_DIGIT HEX_DIGIT (HEX_DIGIT HEX_DIGIT HEX_DIGIT)?;
+
+CSSNUMBER : [0-9]+('.' [0-9]+)?;
+STRING : '"' [0-9a-zA-Z ]* '"'
+       | '\'' [0-9a-zA-Z ]* '\'';
+UNIT   : 'px' | 'vh' | 'vw' | '%';
+WS      : [ \t\n\r]+ -> skip;
+COMMENT : '/*' .*? '*/' -> skip;
+//HEXCOLOR: '#' [a-fA-F0-9]+;
+WHITE    : 'white';
+BLUE     : 'blue';
+RED      : 'red';
+GREEN    : 'green';
+YELLOW   : 'yellow';
+BLACK    : 'black';
+RGBA : 'rgba';
+BODY_TAG        : 'body';
+P_TAG           : 'p';
+IMG_TAG         : 'img';
+H1_TAG          : 'h1';
+H2_TAG          : 'h2';
+BUTTON_TAG      : 'button';
+INPUT_TAG       : 'input';
+UL_TAG          : 'ul';
+LI_TAG          : 'li';
+A_TAG           : 'a';
+FORM_TAG        : 'form';
+LABEL_TAG       : 'label';
+LINK            : 'link';
+BACKGROUNDCOLOR : 'background-color';
+BACKGROUND      : 'background';
+FONTFAMILY      : 'font-family';
+ARIAL_FONTFAMILY: 'Arial';
+SENSSERIF       : 'sans-serif';
+MARGIN          : 'margin';
+AUTO            : 'auto';
+MARGINTOP       : 'margin-top';
+MARGINBOTTOM    : 'margin-bottom';
+PADDING         : 'padding';
+WIDTH           : 'width';
+BORDERRADIOS    : 'border-radius';
+BORDER          : 'border';
+SOLID           : 'solid';
+BOXSHADOW       : 'box-shadow';
+COLOR           : 'color';
+FONTWEIGHT      : 'font-weight';
+BOLD            : 'bold';
+FONTSIZE        : 'font-size';
+COURSER         : 'cursor';
+POINTER         : 'pointer';
+LISTSTYLE       : 'list-style';
+DISPLAY         : 'display';
+FLEX            : 'flex';
+INLINEBLOCK     : 'inline-block';
+JUSTIFYCONTENT  : 'justify-content';
+SPACEBETWEEN    : 'space-between';
+ALIGNITEM       : 'align-items';
+CENTER          : 'center';
+TEXTDECORATION  : 'text-decoration';
+NONEcss           : 'none';
+UNDERLINE       : 'underline';
+HOVER           : 'hover';
+AFTER           : 'after';
+BEFORE          : 'before';
+ID :[a-zA-Z][_0-9a-zA-Z-]*;
+ID_SELECTOR : '#';
