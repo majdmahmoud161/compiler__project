@@ -14,17 +14,15 @@ state :
     |call_function      #CallFunctionLable
     |class_decl         #ClassDeclLabel
     |object             #ObjectLabel
-    |encapsulation      #EncapsulationLabel
-    |constructor_decl   #ConstructorLabel
-    |decorator          #DecoratorLabel
     |call_fromclass     #CallFromClassLabel
-    ;
+    |inheritance        #InheritanceLabel;
 
-vardecler : ID EQUALS (value|array);
 
-value : INT|DOUBLE|STRING|TRUEBOOL|FALSEBOOL|ID;
+vardecler : ID EQUALS value;
 
-array : (ID)? OPENSQUER (value(COMMA value)*)* CLOSESQUER ;
+value : INT|DOUBLE|STRING|TRUEBOOL|FALSEBOOL|ID|array;
+
+array : (ID)? OPENSQUER paramterlist CLOSESQUER ;
 
 loop :
     for                 #ForLable
@@ -43,36 +41,50 @@ else: ELSE COLONE  (state)? ;
 
 function_decler: DEF ID OPENPRAC (ID(COMMA ID)*)* CLOSEPRAC COLONE (state)? return?;
 
-call_function : (ID|build_in_function) OPENPRAC paramterlist? CLOSEPRAC  ;
+call_function : (ID|build_in_function) OPENPRAC paramterlist CLOSEPRAC  ;
 
 build_in_function: PRINT|TYPE|LEN|INPUT ;
 
-paramterlist: (value(COMMA value)*)* ;
-
 return : RETURN value ;
+
 exp: INT ;
 
 class_decl
-   :CLASS ID COLONE encapsulation* (state)* constructor_decl*
+   :CLASS ID COLONE class_body*
    ;
+
+class_body
+    : constructor_decl      #ConstructerDeclerLabel
+    | encapsulation         #EncapsulationLabel
+    | state                 #StateLabel
+    | decorator             #DecoratorLabel
+    ;
+
 constructor_decl
-   : DEF ID OPENPRAC (ID (COMMA)? paramterlist)? CLOSEPRAC COLONE (ID DOT ID EQUALS value)* state*
+   : DEF ID OPENPRAC (paramterlist) CLOSEPRAC COLONE state*
    ;
 object
-   : ID EQUALS ID OPENPRAC (paramterlist)? CLOSEPRAC
+   : ID EQUALS ID OPENPRAC (paramterlist) CLOSEPRAC
    ;
+
 call_fromclass
-   :ID DOT call_function
+   :ID DOT (call_function|ID) (EQUALS value)?
    ;
 
 decorator : AT ID ;
 
 inheritance
-   : CLASS ID OPENPRAC ID (COMMA ID)* CLOSEPRAC COLONE (SUPER DOT ID OPENPRAC paramterlist? CLOSEPRAC)? (state)*
+   : CLASS ID OPENPRAC ID CLOSEPRAC COLONE (super)? (class_body)*
    ;
+
+super
+    : SUPER DOT ID OPENPRAC paramterlist CLOSEPRAC
+    ;
+
 encapsulation
-   : PRIVATE vardecler
-   | PROTECTED vardecler
+   : (PRIVATE|PROTECTED) vardecler
    ;
+
+paramterlist: (value(COMMA value)*)* ;
 
 
