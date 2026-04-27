@@ -10,9 +10,7 @@ public class Array {
 
     String OPENSQUER;
 
-    ArrayList<Value> values = new ArrayList<>();
-
-    ArrayList<String> COMMA = new ArrayList<>();
+    ParameterList parameterList;
 
     String CLOSESQUER;
 
@@ -32,21 +30,7 @@ public class Array {
         this.OPENSQUER = OPENSQUER;
     }
 
-    public ArrayList<Value> getValues() {
-        return values;
-    }
 
-    public void setValues(ArrayList<Value> values) {
-        this.values = values;
-    }
-
-    public ArrayList<String> getCOMMA() {
-        return COMMA;
-    }
-
-    public void setCOMMA(ArrayList<String> COMMA) {
-        this.COMMA = COMMA;
-    }
 
     public String getCLOSESQUER() {
         return CLOSESQUER;
@@ -60,8 +44,8 @@ public class Array {
     public String toString() {
         StringBuilder builder = new StringBuilder("Array { \n");
 
-        if(!values.isEmpty()){
-            builder.append("Value : " + " " + values).append("\n");
+        if(parameterList != null){
+            builder.append("Value : " + " " + parameterList).append("\n");
         }
 
         return builder + " }";

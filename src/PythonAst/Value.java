@@ -15,6 +15,8 @@ public class Value {
 
     String ID;
 
+    Array array;
+
     public String getINT() {
         return INT;
     }
@@ -61,5 +63,24 @@ public class Value {
 
     public void setID(String ID) {
         this.ID = ID;
+    }
+
+    public Array getArray() {
+        return array;
+    }
+
+    public void setArray(Array array) {
+        this.array = array;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("Value");
+
+        if(array != null){
+            builder.append("Array : " + " " + array).append("\n");
+        }
+
+        return builder  + " }";
     }
 }
