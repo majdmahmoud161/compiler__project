@@ -47,7 +47,27 @@ build_in_function: PRINT|TYPE|LEN|INPUT ;
 
 return : RETURN value ;
 
-exp: INT ;
+ exp
+     : exp POW exp
+     | exp MULT exp
+     | exp DIVISION exp
+     | exp MOD exp
+     | exp SUM exp
+     | exp SUB exp
+     | exp ISEQUALS exp
+     | exp GREATER EQUALS exp
+     | exp SMALLER EQUALS exp
+     | exp OR exp
+     | exp AND exp
+     | exp IS exp
+     | INT
+     | ID
+     | ID DOT ID
+     | STRING
+     | TRUEBOOL
+     | FALSEBOOL
+     | NONE
+     ;
 
 class_decl
    :CLASS ID COLONE class_body*
