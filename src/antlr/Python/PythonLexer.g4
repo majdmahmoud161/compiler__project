@@ -60,7 +60,7 @@ PROTECTED:'_';
 
 INT:[0-9]+;
 DOUBLE:INT'.'INT;
-ID :[a-zA-Z_][0-9a-zA-Z_]*;
+ID :[a-zA-Z][0-9a-zA-Z]*;
 STRING:'"' [0-9a-zA-Z ]* '"'
        |'\''[0-9a-zA-Z ]*'\'';
 WHSPACE:[ \t\r]+->skip;
