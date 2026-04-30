@@ -44,30 +44,30 @@ classname
     ;
 
 idname
-    : ID_SELECTOR ID  OPENKPRA csscontent*CLOSEKPRA
+    : ID_SELECTOR ID  OPENKPRA csscontent * CLOSEKPRA
     ;
 
-csscontent
-    : font_family
-    | background_color
-    | margin
-    | margin_top
-    | margin_bottom
-    | padding
-    | font_weight
-    | color
-    | width
-    | border_radius
-    | background
-    | border
-    | box_shadow
-    | cursor
-    | text_decoration
-    | align_items
-    | justify_content
-    | display
-    | list_style
-    | font_size
+csscontent:
+    font_family        #FontFamilyLabel
+    | background_color #BackgroundColorLabel
+    | margin           #MarginLabel
+    | margin_top       #MarginTopLabel
+    | margin_bottom    #MarginBottomLabel
+    | padding          #PaddingLabel
+    | font_weight      #FontWeightLabel
+    | color            #ColorLabel
+    | width            #WidthLabel
+    | border_radius    #BorderRadiusLabel
+    | background       #BackgroundLabel
+    | border           #BorderLabel
+    | box_shadow       #BoxShadowLabel
+    | cursor           #CursorLabel
+    | text_decoration  #TextDecorationLabel
+    | align_items      #AlignItemLebel
+    | justify_content  #JustifyContentLabel
+    | display          #DisplayLabel
+    | list_style       #ListStyleLabel
+    | font_size        #FontSizeLabel
     ;
 font_size
     :FONTSIZE COLONE CSSNUMBER UNIT? SEMICOLON;
