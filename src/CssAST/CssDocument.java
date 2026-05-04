@@ -4,46 +4,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CssDocument extends ASTNode{
-List<NameOfTag>nameOfTags = new ArrayList<>();
-List<ClassName>classNames = new ArrayList<>();
-List<IdName>idNames = new ArrayList<>();
 
-    public List<NameOfTag> getNameOfTags() {
-        return nameOfTags;
+NameOfTag nameOfTag;
+ClassName className;
+IdName idName;
+
+    public NameOfTag getNameOfTag() {
+        return nameOfTag;
     }
 
-    public void setNameOfTags(List<NameOfTag> nameOfTags) {
-        this.nameOfTags = nameOfTags;
+    public void setNameOfTag(NameOfTag nameOfTag) {
+        this.nameOfTag = nameOfTag;
     }
 
-    public List<ClassName> getClassNames() {
-        return classNames;
+    public ClassName getClassName() {
+        return className;
     }
 
-    public void setClassNames(List<ClassName> classNames) {
-        this.classNames = classNames;
+    public void setClassName(ClassName className) {
+        this.className = className;
     }
 
-    public List<IdName> getIdNames() {
-        return idNames;
+    public IdName getIdName() {
+        return idName;
     }
 
-    public void setIdNames(List<IdName> idNames) {
-        this.idNames = idNames;
+    public void setIdName(IdName idName) {
+        this.idName = idName;
     }
 
     @Override
     public String toString() {
         StringBuilder builder=new StringBuilder("CssDocument{\n");
 
-        if(nameOfTags!=null && !nameOfTags.isEmpty() ){
-            builder.append("nameOfTags : " + " " + nameOfTags).append("\n");
+        if(nameOfTag!=null ){
+            builder.append("nameOfTag : " + " " + nameOfTag).append("\n");
         }
-        if(classNames!=null && !classNames.isEmpty()){
-            builder.append("classNames : " + " "+ classNames).append("\n");
+        if(className!=null ){
+            builder.append("className : " + " "+ className).append("\n");
         }
-        if(idNames!=null && !idNames.isEmpty()){
-            builder.append("idNames : " + " " + idNames).append("\n");
+        if(idName!=null ){
+            builder.append("idName : " + " " + idName).append("\n");
         }
 
                return builder + "}";

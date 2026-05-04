@@ -1,19 +1,18 @@
 parser grammar CssParser;
 options { tokenVocab = CssLexer; }
-
-
+//done with ast
+programme : cssdocument* EOF ;
+//done with ast
 cssdocument
-    : (nameOfTag
-     | classname
-     | idname)+ EOF
+     : nameOfTag      #NMAEOFTAG
+     | classname      #CLASSNAME
+     | idname         #IDNAME
     ;
-
-///////////////////// TAG_OPEN_SLASH
+//done with ast
 nameOfTag
-    :
-     (csstagName (COMMA csstagName)* OPENKPRA csscontent* CLOSEKPRA)
-    | (csstagName COLONE hov_aft_bef OPENKPRA csscontent* CLOSEKPRA)
-    | (csstagName csstagName OPENKPRA csscontent* CLOSEKPRA)
+    : csstagName (COMMA csstagName)* OPENKPRA csscontent* CLOSEKPRA
+    | csstagName COLONE hov_aft_bef OPENKPRA csscontent* CLOSEKPRA
+    | csstagName csstagName OPENKPRA csscontent* CLOSEKPRA
     ;
 
 
@@ -131,11 +130,13 @@ border_radius
      box_shadow
          : BOXSHADOW COLONE shadowValue+ SEMICOLON
          ;
-
+//done with ast
      shadowValue
          : CSSNUMBER UNIT?
-         | RGBA OPENPRAC CSSNUMBER COMMA CSSNUMBER COMMA CSSNUMBER COMMA CSSNUMBER CLOSEPRAC
+         | rgba
          ;
+//done with ast
+     rgba:RGBA OPENPRAC CSSNUMBER COMMA CSSNUMBER COMMA CSSNUMBER COMMA CSSNUMBER CLOSEPRAC;
 
 
    list_style
